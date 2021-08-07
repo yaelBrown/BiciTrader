@@ -14,7 +14,7 @@ export default function Test() {
   
   useEffect(() => {
     TestService.getTestData().then((res) => {
-      console.log(res.data)
+      // console.log(res.data)
       if (res.data.msg === "ok") {
         let newState = {...state}
         newState.isLoading = false
@@ -28,7 +28,7 @@ export default function Test() {
         setState(newState)
       }
     })
-    console.log(state)
+    // console.log(state)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
@@ -36,11 +36,9 @@ export default function Test() {
     if (state.isError) {
       return (<p>{state.testData}</p>)
     } else {
-      console.log(state)
       let listItems = state.testData.map((e,i) => {
-        return <span>id: {e.id} name: {e.name} age: {e.age}<br></br></span>
+        return <span key={i}>id: {e.id} name: {e.name} age: {e.age}<br></br></span>
       })
-      console.log(listItems)
       return listItems
     }
   }
