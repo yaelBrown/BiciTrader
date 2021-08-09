@@ -1,0 +1,12 @@
+#HomeBody {
+  width: 80%;
+  height: auto;
+  margin: auto;
+  display: flex;
+}
+
+#HomeLoadingBiker {
+  width: 50px;
+  margin: 20em auto 20em auto;
+}
+

@@ -1,0 +1,35 @@
+footer {
+  /* width: 100vw; */
+  background-color: #353535;
+  color: #ffffff;
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* display: block; */
+}
+
+#footerContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.footerColumns {
+  width: 20%;
+}
+
+#footerLeft { 
+  padding-top: 7px;
+}
+
+a:link,
+a:hover,
+a:active,
+a:visited {
+  color: white;
+}
+
+.footerAppButtons {
+  width: 150px;
+  height: auto;
+}

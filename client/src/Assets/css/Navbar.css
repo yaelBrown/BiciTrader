@@ -1,0 +1,27 @@
+#NavbarBody {
+  background-color: #353535;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  opacity: 95%;
+}
+
+#NavbarContainer {
+  color: #ffffff;
+  width: 80vw;
+  height: 100%;
+  display: flex;
+  margin: auto;
+  padding: 0px 10px 0px 10px;
+  justify-content: space-between;
+}
+
+#NavbarUser {
+ 
+}
+
+.NavbarVCenter {
+  margin: 0;
+  position: absolute;
+  top: 35%;
+}

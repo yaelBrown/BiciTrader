@@ -12,6 +12,7 @@ class TestService:
     self.table = "Test"
 
   def getTestData(self):
+    db.cur.execute("set global max_allowed_packet=67108864")
     db.cur.execute("SELECT * FROM test")
     res = db.cur.fetchall()
 

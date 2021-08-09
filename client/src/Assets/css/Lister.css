@@ -1,0 +1,38 @@
+#ListerWrapper {
+  width: 100%;
+}
+
+#ListerContainer {
+  display: flex;
+  background-color: #ffffff;
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.Lister {}
+
+#ListerLeft {
+  min-width: 200px;
+  text-align: center;
+}
+
+#ListerRight {
+  width: 100%;
+}
+
+#ListerNoListings {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+  justify-content: center;
+}
+
+#ListerNoListings img {
+  max-width: 10rem;
+  margin: auto;
+}
+
+#ListerNoListings p {
+  text-align: center;
+}
