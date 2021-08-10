@@ -1,31 +1,14 @@
 import React, { useEffect } from 'react'
 
 import exampleListing from '../../Examples/ExampleListing'
+// import ListerListing from './ListerListing'
 import ListerListing from './ListerListing'
 
 import '../../Assets/css/Lister.css'
 import fallingBike from '../../Assets/images/fallingBike.gif'
 
-const generateExampleListing = (n) => {
-  let out = exampleListing;
-  out.id = n
-  return out
-}
+import ListerService from '../../Services/ListerService'
 
-const generateListings = (isExample = false, qty = 0) => {
-  let out = []
-  if (isExample && qty > 0) {
-    for (let i = 0; i < qty; i++) {
-      out.push(generateExampleListing(i))
-    }
-  } else {
-    // Pull information from state
-    // Eval listings
-    // Return eval'd list
-    out = out
-  }
-  return out
-}
 
 export default function Lister(props) {
   // Evaluate content from db to render selections in ListerForm
@@ -43,8 +26,9 @@ export default function Lister(props) {
         </div>
       )
     } else {
-      l.map((e,i) => {})
-      // return something here
+      l.map((e,i) => {
+        return (<ListerListing/>)
+      })
     }
   }
 
@@ -63,7 +47,17 @@ export default function Lister(props) {
           </form>
         </div>
         <div className="Lister" id="ListerRight">
-          { renderListings(generateListings(0)) }
+          <ListerListing listing={exampleListing}/>
+          <ListerListing listing={exampleListing}/>
+          <ListerListing listing={exampleListing}/>
+          <ListerListing listing={exampleListing}/>
+          <ListerListing listing={exampleListing}/>
+          <ListerListing listing={exampleListing}/>
+          <ListerListing listing={exampleListing}/>
+          <ListerListing listing={exampleListing}/>
+          <ListerListing listing={exampleListing}/>
+          <ListerListing listing={exampleListing}/>
+          {/* { renderListings(ListerService.generateListings(0)) } */}
         </div>
       </div>
       <p>isLoggedIn: {props.loggedIn + ""}</p>

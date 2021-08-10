@@ -15,7 +15,6 @@ function App() {
         <Navbar/>
         <span id="AppSpacer"/>
         <Router/>
-        {/* <Footer/> */}
       </div> 
     </BrowserRouter>
   );
