@@ -12,7 +12,7 @@ const exampleListing = {
   title: "Cannondale Hardtail Mountain/Trail Bicycle",
   subtitle: "Selling a used but well kept Cannondale F8 hardtail bicycle.",
   body: "Medium\nThis is a great bicycle to kick off your riding season. This can easily handle anything from gravel riding to serious rock drops in the woods.\n- Hydraulic disc brakes for on command stopping power\n- Shimano drivetrain, smooth shifting\n- Responsive front suspension with hydraulic lock out dial\n- comfortable cannondale saddle and textured handlebar grips\n\n\n$400 cash/Venmo/Zelle only. Pick up only near Stone Oak\n",
-  image: "https://images.craigslist.org/00C0C_fvRpWGCYRByz_0CI0t2_50x50c.jpg"
+  image: "https://p.vitalmtb.com/photos/products/31232/photos/65361/s1600_photo_215384.jpg"
 }
 
 export default exampleListing

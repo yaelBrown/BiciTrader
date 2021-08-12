@@ -16,6 +16,11 @@
   text-align: center;
 }
 
+.ListerAttrib {
+  display: flex;
+  flex-direction: column;
+}
+
 #ListerRight {
   width: 100%;
 }

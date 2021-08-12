@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import exampleListing from '../../Examples/ExampleListing'
 // import ListerListing from './ListerListing'
@@ -11,14 +11,23 @@ import ListerService from '../../Services/ListerService'
 
 
 export default function Lister(props) {
+
+  const [state, setState] = useState({})
+
   // Evaluate content from db to render selections in ListerForm
-  useEffect(() => "cool", [])
+  useEffect(() => {
+    // Get from db or generate listings
+    const listings = ListerService.generateListings(true, 10)
+    const attrib = ListerService.generateAttributes(listings)
+
+    setState({listings, attrib})
+  }, [])
 
   
   // const listingQty = 0 // var is only here for development
-
-  const renderListings = (l) => {
-    if (l.length === 0) {
+  const renderListings = l => {
+    
+    if (l === undefined || l.length === 0) {
       return (
         <div id="ListerNoListings">
           <img src={fallingBike} alt="No bikes found"/>
@@ -32,18 +41,37 @@ export default function Lister(props) {
     }
   }
 
+  const renderAttributes = att => {
+
+  }
+
+  const handleInputChange = e => {
+    console.log("Something changed !")
+  }
+
   console.log(props.loggedIn)
   return (
     <div id="ListerWrapper">
       <div id="ListerContainer">
         <div className="Lister" id="ListerLeft">
           <form id="ListerForm">
-            <label for="ListerFormBrand">Brand</label><br></br>
-            <label for="ListerFormType">Type</label><br></br>
-            <label for="ListerFormGender">Gender</label><br></br>
-            <label for="ListerFormSize">Size</label><br></br>
-            <label for="ListerFormLocation">Location</label><br></br>
-            <label for="ListerFormPrice">Price</label><br></br>
+            <label className="ListerAttrib" for="ListerFormBrand">
+              <strong>Brand</strong>
+              <span>
+                <input 
+                  type="checkbox"
+                  name="ListerFormBrand"
+                  checked={false}
+                  onChange={handleInputChange}
+                  value="Cannondale" />
+                Cannondale ({state.attrib.brand.Cannondale})
+              </span>
+            </label>
+            <label className="ListerAttrib" for="ListerFormType">Type</label><br></br>
+            <label className="ListerAttrib" for="ListerFormGender">Gender</label><br></br>
+            <label className="ListerAttrib" for="ListerFormSize">Size</label><br></br>
+            <label className="ListerAttrib" for="ListerFormLocation">Location</label><br></br>
+            <label className="ListerAttrib" for="ListerFormPrice">Price</label><br></br>
           </form>
         </div>
         <div className="Lister" id="ListerRight">
@@ -57,7 +85,7 @@ export default function Lister(props) {
           <ListerListing listing={exampleListing}/>
           <ListerListing listing={exampleListing}/>
           <ListerListing listing={exampleListing}/>
-          {/* { renderListings(ListerService.generateListings(0)) } */}
+          { renderListings(state.listings) }
         </div>
       </div>
       <p>isLoggedIn: {props.loggedIn + ""}</p>
