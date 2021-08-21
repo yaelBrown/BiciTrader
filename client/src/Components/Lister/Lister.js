@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect }  from 'react-router-dom'
 
 import exampleListing from '../../Examples/ExampleListing'
 // import ListerListing from './ListerListing'
@@ -11,8 +12,12 @@ import ListerService from '../../Services/ListerService'
 
 
 export default function Lister(props) {
+  const initialState = {
+    isLoading: true,
+    isError: false
+  }
 
-  const [state, setState] = useState({})
+  const [state, setState] = useState(initialState)
 
   // Evaluate content from db to render selections in ListerForm
   useEffect(() => {
@@ -20,7 +25,7 @@ export default function Lister(props) {
     const listings = ListerService.generateListings(true, 10)
     const attrib = ListerService.generateAttributes(listings)
 
-    setState({listings, attrib})
+    setState({...state, isLoading: false, listings, attrib})
   }, [])
 
   
@@ -34,61 +39,68 @@ export default function Lister(props) {
           <p>No bikes found :(</p>
         </div>
       )
-    } else {
-      l.map((e,i) => {
-        return (<ListerListing/>)
-      })
+    } 
+
+    let out = [];
+
+    l.map((e) => out.push(<ListerListing listing={e}/>))
+
+    return out
+  }
+
+  const renderCreateBtn = () => {
+    if (props.loggedIn) {
+      console.log("this value is true")
+      return <a href="/createListing">Create Listing</a>
+    } else { 
+      return ""
     }
   }
 
-  const renderAttributes = att => {
+  const renderAttributes = att => {}
 
-  }
+  const handleInputChange = e => { console.log("Something changed !") }
 
-  const handleInputChange = e => {
-    console.log("Something changed !")
-  }
 
-  console.log(props.loggedIn)
-  return (
-    <div id="ListerWrapper">
-      <div id="ListerContainer">
-        <div className="Lister" id="ListerLeft">
-          <form id="ListerForm">
-            <label className="ListerAttrib" for="ListerFormBrand">
-              <strong>Brand</strong>
-              <span>
-                <input 
-                  type="checkbox"
-                  name="ListerFormBrand"
-                  checked={false}
-                  onChange={handleInputChange}
-                  value="Cannondale" />
-                Cannondale ({state.attrib.brand.Cannondale})
-              </span>
-            </label>
-            <label className="ListerAttrib" for="ListerFormType">Type</label><br></br>
-            <label className="ListerAttrib" for="ListerFormGender">Gender</label><br></br>
-            <label className="ListerAttrib" for="ListerFormSize">Size</label><br></br>
-            <label className="ListerAttrib" for="ListerFormLocation">Location</label><br></br>
-            <label className="ListerAttrib" for="ListerFormPrice">Price</label><br></br>
-          </form>
-        </div>
-        <div className="Lister" id="ListerRight">
-          <ListerListing listing={exampleListing}/>
-          <ListerListing listing={exampleListing}/>
-          <ListerListing listing={exampleListing}/>
-          <ListerListing listing={exampleListing}/>
-          <ListerListing listing={exampleListing}/>
-          <ListerListing listing={exampleListing}/>
-          <ListerListing listing={exampleListing}/>
-          <ListerListing listing={exampleListing}/>
-          <ListerListing listing={exampleListing}/>
-          <ListerListing listing={exampleListing}/>
-          { renderListings(state.listings) }
+
+  if (state.isLoading) {
+    return (
+      <div id="ListerWrapper">
+        <div id="ListerContainer">
+          <p id="ListerLoading">Loading...</p>
         </div>
       </div>
-      <p>isLoggedIn: {props.loggedIn + ""}</p>
-    </div>
-  )
+    )
+  } else {
+    return (
+      <div id="ListerWrapper">
+        <div id="ListerContainer">
+          <div className="Lister" id="ListerLeft">
+            <form id="ListerForm">
+  
+              <label className="ListerAttrib" for="ListerFormBrand">
+                { renderCreateBtn() }
+                <strong>Brand</strong>
+                <span>
+                  <input type="checkbox" name="ListerFormBrand" checked={false} onChange={handleInputChange} value="Cannondale" />
+                  {/* Cannondale ({(!state.attrib.brand.Cannondale === undefined) ? state.attrib.brand.Cannondale : "#"}) */}
+                </span>
+              </label>
+  
+              <label className="ListerAttrib" for="ListerFormType">Type</label><br></br>
+              <label className="ListerAttrib" for="ListerFormGender">Gender</label><br></br>
+              <label className="ListerAttrib" for="ListerFormSize">Size</label><br></br>
+              <label className="ListerAttrib" for="ListerFormLocation">Location</label><br></br>
+              <label className="ListerAttrib" for="ListerFormPrice">Price</label><br></br>
+            </form>
+          </div>
+          <div className="Lister" id="ListerRight">
+            { renderListings(state.listings) }
+          </div>
+        </div>
+        <p>isLoggedIn: {props.loggedIn + ""}</p>
+      </div>
+    )
+  }
+
 }

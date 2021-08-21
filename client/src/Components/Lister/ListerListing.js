@@ -3,8 +3,6 @@ import React, { useEffect } from 'react'
 import bicyclePlaceholder from '../../Assets/images/bicyclePlaceholder.png'
 
 export default function ListerListing(props) {
-  useEffect( () => console.log(props), [])
-
   const renderThumbnail = () => {
     if (props.listing.image === "" | props.listing.image === undefined) {
       return (<img src={bicyclePlaceholder} id="ListingThumbnail" alt="bicycleImage"/>)

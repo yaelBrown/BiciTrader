@@ -11,7 +11,7 @@ export default function Home() {
   let initialState = {
     isLoading: false,
     isError: false,
-    isLoggedIn: false,
+    isLoggedIn: true,
     msg: ""
   }
   

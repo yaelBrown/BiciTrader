@@ -9,6 +9,11 @@
   padding-top: 1rem;
 }
 
+#ListerLoading {
+  margin: auto;
+  padding: 5rem;
+}
+
 .Lister {}
 
 #ListerLeft {
